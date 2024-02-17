@@ -48,10 +48,29 @@
                 name: 'Live',
                 type: 'LiveStream',
                 target: document.querySelector('#code_bar'),
+                constraints: {
+                    width: 480,
+                    height: 320,
+                    facingMode: 'environment', // or user (for front camera)
+                },
             },
             decoder: {
                 readers: ['code_128_reader'],
             },
+            locator: {
+                patchSize: 'medium',
+                halfSample: true,
+            },
+            numOfWorkers: navigator.hardwareConcurrency || 4,
+            frequency: 10,
+            locate: true,
+        }, function(err) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+            Quagga.start();
         });
 
         Quagga.onDetected(function(result) {
@@ -59,8 +78,6 @@
             document.getElementById('code_bar').value = barcode;
             Quagga.stop();
         });
-
-        Quagga.start();
     }
     </script>
 </div>
