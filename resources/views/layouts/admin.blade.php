@@ -23,10 +23,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm te">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}" style="color:black;">
+                <a class="navbar-brand" href="{{ url('/admin/') }}" style="color:black;">
                     <img src="{{asset('assets/logo_mobilis.svg')}}" alt="" srcset="">
-                      {{-- {{ config('app.name', 'Laravel') }} --}}
-                  </a>
+                    {{-- {{ config('app.name', 'Laravel') }} --}}
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -43,36 +43,35 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @auth('admin')
-                            <div class="admin-sidebar">
-                                <!-- admin sidebar links-->
-                            </div>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.articles.index') }}" class="nav-link">Articles</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.bureaux.index') }}" class="nav-link">Bureaux</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.sieges.index') }}" class="nav-link">Siéges</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{-- {{ Auth::admin()->name }} --}}
+                        <div class="admin-sidebar">
+                            <!-- admin sidebar links-->
+                        </div>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.articles.index') }}" class="nav-link">Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.bureaux.index') }}" class="nav-link">Bureaux</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.sieges.index') }}" class="nav-link">Siéges</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{-- {{ Auth::admin()->name }} --}}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endauth
                     </ul>
                 </div>
